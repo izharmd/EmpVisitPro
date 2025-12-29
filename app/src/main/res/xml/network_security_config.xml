@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- For development/testing only -->
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">testservice.swalekha.in</domain>
+    </domain-config>
+
+    <!-- Or allow all domains (NOT RECOMMENDED for production) -->
+    <!--
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+        </trust-anchors>
+    </base-config>
+    -->
+</network-security-config>

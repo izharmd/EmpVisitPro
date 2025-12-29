@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">EmpVisist</string>
+
+    <string name="log_out">Are you sure want to logout?</string>
+
+
+    <string name="ARE_YOU_SURE_WANT_TO_UPLOAD_DATA">डेटा अपलोड हो जाने के पश्चात परिवर्तित नहीं किया जा सकेगा। क्या आप निश्चित रूप से डेटा अपलोड करना चाहते हैं?</string>
+    <string name="NO"> नहीं </string>
+    <string name="YES"> हाँ </string>
+
+    <string name="LOADING_PLEASE_WAIT">डाटा लोड हो रहा है कृपया प्रतीक्षा करें </string>
+    <string name="NO_INTERNET_CONNECTION">कृपया  इंटरनेट कनेक्शन चेक करें</string>
+    <string name="PLEASE_WAIT">डाटा लोड हो रहा है कृपया प्रतीक्षा करें ..</string>
+    <string name="NO_DATA_FOUND">No data found.</string>
+    <string name="DATA_ALREADY_SAVED">इस तिथि को डाटा सेव हुआ है कृपया दूसरे तिथि में पुनः प्रयास करे। </string>
+    <string name="DATA_SAVED_SUCCESSFULLY">डाटा सफलता पूर्वक सेव हुआ </string>
+    <string name="DATA_UPDATE_SUCCESSFULLY">डाटा सफलता पूर्वक अपडेट हुआ </string>
+    <string name="ALL_QUESTION_MANDATORY">कृपया सभी प्रश्न का उत्तर भरें </string>
+    <string name="DATA_UPLOAD_SUCCESSFULLY">डाटा सफलता पूर्वक अपलोड हुआ </string>
+    <string name="SERVER_ERROR">सर्वर एरर कृपया पुनः प्रयास करे।  </string>
+    <string name="USERNAME_OR_PASSWORD_WRONG">यूजर नाम या पासवर्ड गलत कृपया पुनः प्रयास करें</string>
+    <string name="WORK_LIMIT_OVER">आज का कार्य का कोटा पूरा हो चूका है </string>
+    <string name="WORK_LIMIT_OVER_FOR_THIS_MONTH"> को आप इस महीने का डाटा भर चुके हैं </string>
+    <string name="no_update_after_two_days"> सेव करने के बाद आप दो दिनों के बाद अपडेट नहीं कर सकते. </string>
+    <string name="ENABLE_AUTO_DATE_TIME"> आपकी डिवाइस की तारीख गलत है, कृपया तारीख और समय सही करें. </string>
+    <string name="UPDATE_APP">आप पुराने संस्करण का उपयोग कर रहे हैं, कृपया प्ले स्टोर से नवीनतम संस्करण अपडेट करें।</string>
+</resources>
