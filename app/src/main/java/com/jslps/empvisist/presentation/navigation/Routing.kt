@@ -1,5 +1,6 @@
 package com.jslps.empvisist.presentation.navigation
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
@@ -16,6 +17,7 @@ import com.jslps.empvisist.presentation.screen.LoginScreen
 import com.jslps.empvisist.presentation.viewmodel.DashboardViewmodel
 import com.jslps.empvisist.presentation.viewmodel.LoginViewModel
 
+@SuppressLint("UnrememberedGetBackStackEntry")
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
 fun AppNavigation(
