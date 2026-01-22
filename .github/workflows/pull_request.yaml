@@ -23,11 +23,25 @@ jobs:
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
       - name: Create local.properties
         run: echo "sdk.dir=$ANDROID_HOME" > local.properties
 
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+      - name: Debug info
+        run: |
+          echo "ANDROID_HOME: $ANDROID_HOME"
+          ls -la
+          ./gradlew --version
+
       - name: Build project
-        run: ./gradlew build
+        run: ./gradlew build --stacktrace
