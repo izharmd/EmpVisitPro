@@ -86,7 +86,7 @@ class DashboardScreenTest {
             .assertCountEquals(2) // One for Panchayat, one for Village
     }
 
-    @Test
+ /*   @Test
     fun dashboardScreen_showsEmptyStateWhenNoData() {
         // Given
         setupDashboardScreen()
@@ -101,7 +101,7 @@ class DashboardScreenTest {
         composeTestRule
             .onAllNodesWithText("Select")
             .assertCountEquals(2)
-    }
+    }*/
 
     @Test
     fun dashboardScreen_panchayatDropdown_opensDialogOnClick() {

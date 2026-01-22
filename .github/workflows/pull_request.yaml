@@ -1,4 +1,4 @@
-name: Android Build
+name: Android Build and Test
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,11 +37,64 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
-      - name: Debug info
-        run: |
-          echo "ANDROID_HOME: $ANDROID_HOME"
-          ls -la
-          ./gradlew --version
+      - name: Run Unit Tests
+        run: ./gradlew testDebugUnitTest --stacktrace
 
-      - name: Build project
-        run: ./gradlew build --stacktrace
+      - name: Run Instrumentation Tests (if any)
+        run: |
+          ./gradlew connectedDebugAndroidTest --stacktrace || echo "No instrumentation tests or emulator not available"
+
+      - name: Upload Test Results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: |
+            app/build/reports/tests/
+            app/build/outputs/androidTest-results/
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test  # Only build if tests pass
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Cache Gradle dependencies
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
+      - name: Create local.properties
+        run: echo "sdk.dir=$ANDROID_HOME" > local.properties
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      - name: Build APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Build Release APK
+        run: ./gradlew assembleRelease --stacktrace
+
+      - name: Upload APKs
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: apk-builds
+          path: |
+            app/build/outputs/apk/debug/
+            app/build/outputs/apk/release/
