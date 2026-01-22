@@ -2,7 +2,7 @@ name: Android Build
 
 on:
   push:
-    branches: [dev_ui_test, main]
+    branches: [dev_uitest, main]
   pull_request:
     branches: [main]
 
