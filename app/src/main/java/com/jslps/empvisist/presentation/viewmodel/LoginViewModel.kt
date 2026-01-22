@@ -1,48 +1,28 @@
 package com.jslps.empvisist.presentation.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jslps.empvisist.api.ApiResponse
-import com.jslps.empvisist.api.LoginRequest
 import com.jslps.empvisist.data.remote.response.ResponseData
 import com.jslps.empvisist.domain.usecase.LoginUseCase
-import com.jslps.empvisist.domain.usecase.LoginValidationUseCase
-import com.jslps.empvisist.domain.usecase.ValidationResult
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 @HiltViewModel
 class LoginViewModel @Inject constructor(
-    private val loginUseCase: LoginUseCase,
-    private val loginValidationUseCase: LoginValidationUseCase
+    private val loginUseCase: LoginUseCase
 ) : ViewModel() {
-
-
 
     // UI State
     private val _loginState = MutableStateFlow<ApiResponse<ResponseData?>>(ApiResponse.Idle)
     val loginState: StateFlow<ApiResponse<ResponseData?>> = _loginState.asStateFlow()
 
     fun onLoginClick(username:String,password: String) {
-       /* when (val result = loginValidationUseCase.validateCredentials(username, password)) {
-            is ValidationResult.Success -> {
-                // Call API
-                performLogin(username, password)
-            }
-            is ValidationResult.Error -> {
-                _loginState.value = ApiResponse.Error(result.message)
-            }
-        }*/
-
         performLogin(username, password)
     }
 

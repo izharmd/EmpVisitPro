@@ -30,7 +30,5 @@ class LoginUseCase @Inject constructor(
             }
         }
     }
-
-
 }
 

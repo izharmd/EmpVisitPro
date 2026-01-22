@@ -35,6 +35,8 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/LICENSE.md"
+            excludes += "META-INF/LICENSE-notice.md"
             // This enables extraction of native libraries for 16KB page support
             jniLibs.useLegacyPackaging = true
         }
@@ -67,6 +69,7 @@ dependencies {
     implementation(libs.compose.navigation)
     implementation(libs.appcompat)
     implementation(libs.foundation)
+    testImplementation(libs.junit)
     debugImplementation(libs.compose.tooling)
 
     // AUTO UPDATE
@@ -105,4 +108,20 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.7.5")
     implementation(libs.constraintlayout.compose)
     implementation(libs.coil.compose)
+
+
+
+    testImplementation("io.mockk:mockk:1.13.8")// Mocking
+    testImplementation("com.google.truth:truth:1.1.5")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3") // Coroutines
+
+    // ====== UI/INSTRUMENTATION TESTS (androidTest/) ======
+    androidTestImplementation("androidx.compose.ui:ui-test-junit4:1.5.4")     // Compose UI testing
+    androidTestImplementation("androidx.test.ext:junit:1.1.5")                // Android JUnit
+    androidTestImplementation("io.mockk:mockk-android:1.13.8")                // MockK for Android
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.5.4")         // Test manifest
+
+    // ====== HILT TESTING (if using) ======
+    androidTestImplementation("com.google.dagger:hilt-android-testing:2.57.2")
+    kspAndroidTest("com.google.dagger:hilt-compiler:2.57.2")
 }

@@ -1,6 +1,5 @@
 package com.jslps.empvisist.presentation.components
 
-import android.content.Context
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -43,7 +42,7 @@ import androidx.compose.ui.window.Dialog
 import com.jslps.empvisist.ui.theme.ColorBtnRed
 
 @Composable
-fun <T> customSearchableSpinner(
+fun <T> CustomSearchableSpinner(
     showDialog: Boolean,
     onDismiss: () -> Unit,
     title: String = "",

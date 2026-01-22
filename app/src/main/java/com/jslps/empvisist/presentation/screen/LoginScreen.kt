@@ -39,6 +39,7 @@ import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -75,7 +76,8 @@ fun LoginScreenPreview() {
 @Composable
 fun LoginScreen(
     navController: NavHostController? = null,
-    loginVM: LoginViewModel? = null
+    loginVM: LoginViewModel? = null,
+    isTestMode: Boolean = false  // Add this parameter
 ) {
     val context = LocalContext.current
     var captchaText by remember { mutableStateOf(generateCaptchaText()) }
@@ -110,7 +112,7 @@ fun LoginScreen(
         }
     }
 
-    if (!LocalInspectionMode.current) {
+    if (!LocalInspectionMode.current && !isTestMode) {  // Skip in test mode
         AutoRequestPermissions()
     }
     Box(modifier = Modifier.fillMaxSize()) {
@@ -132,7 +134,7 @@ fun LoginScreen(
                 )
 
                 AppText(
-                    modifier = Modifier.constrainAs(textLogin) {
+                    modifier = Modifier.testTag("username_field").constrainAs(textLogin) {
                         top.linkTo(imgLogo.bottom, margin = 24.dp)
                         start.linkTo(parent.start)
                         end.linkTo(parent.end)
@@ -216,6 +218,7 @@ fun LoginScreen(
                         )
                     },
                     // enabled = isCaptchaVerified
+                    enabled = !isLoading
                 )
                 if (isLoading) {
                     LoadingView("Loading...")
@@ -357,7 +360,7 @@ fun CaptchaView(
             label = "Enter captcha",
 
             isError = userInput.isNotEmpty() && !userInput.equals(captchaText, ignoreCase = true),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth().testTag("captcha_input")  // ADD THIS
         )
 
         // Verification Status
