@@ -37,5 +37,6 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x ./gradlew
 
+
       - name: Build project
         run: ./gradlew build
