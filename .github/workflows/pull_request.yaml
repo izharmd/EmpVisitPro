@@ -1,6 +1,8 @@
 name: Android Build
 
 on:
+  push:  # ADD THIS
+    branches: [dev_ui_test, main]  # ADD THIS
   pull_request:
     branches: [main]
 
