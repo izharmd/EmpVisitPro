@@ -51,6 +51,7 @@ import com.jslps.empvisist.presentation.viewmodel.DashboardViewmodel
 import com.jslps.empvisist.ui.theme.EmpVisistTheme
 import com.jslps.empvisist.ui.theme.gradientUserDetails
 import com.jslps.empvisit.R
+import androidx.compose.runtime.collectAsState
 
 
 @Composable
@@ -430,7 +431,9 @@ fun DashboardScreen(
                             )
                             {
                                 // text or placeholder
-                                if (viewModelDB?.arrayPanchayatList?.value?.isNotEmpty() == true) {
+
+                                val dataList by viewModelDB?.arrayPanchayatList?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
+                                if (dataList.isNotEmpty()) {
                                     Text(
                                         text = "Select",
                                         style = TextStyle(
@@ -529,7 +532,11 @@ fun DashboardScreen(
                                 horizontalArrangement = Arrangement.SpaceBetween
                             ) {
                                 // text or placeholder
-                                if (viewModelDB?.villageList?.value?.isNotEmpty() == true) {
+
+
+                                val dataList by viewModelDB?.villageList?.collectAsState() ?: remember { mutableStateOf(emptyList()) }
+
+                                if (dataList.isNotEmpty()) {
                                     Text(
                                         text = "Select",
                                         style = TextStyle(
