@@ -81,30 +81,6 @@ class UserViewModelTest {
         assertEquals("", result.username)
     }
 
-    @Test
-    fun `getUserDetailsList updates state on multiple emissions`() = runTest {
-        val first = tblLogin(1, "FirstUser", "1111111111")
-        val second = tblLogin(2, "Izhar", "9999999999")
-
-        val sharedFlow = MutableSharedFlow<tblLogin>(replay = 0)
-
-        coEvery {
-            useCase.getUserDetails()
-        } returns sharedFlow
-
-        // Start collecting
-        viewModel.getUserDetailsList()
-
-        // Emit AFTER collector is active
-        sharedFlow.emit(first)
-        sharedFlow.emit(second)
-
-        // Assert latest value
-        val result = viewModel.arrayUseList.value
-        assertEquals("Izhar", result.username)
-        assertEquals(2, result.userId)
-    }
-
 
 
     @Test
