@@ -14,6 +14,4 @@ class GetUserDetailsUseCase @Inject constructor(
 
     suspend fun getUserDetails()=  repository.getUserDetails()
 
-
-
 }
